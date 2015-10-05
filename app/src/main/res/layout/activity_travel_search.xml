@@ -3,5 +3,5 @@
           android:id="@+id/travel_search_fragment"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:name="org.desseim.goeuro.TravelSearchFragment"
+          android:name="org.desseim.goeuro.ui.search.TravelSearchFragment"
           tools:layout="@layout/fragment_travel_search"/>

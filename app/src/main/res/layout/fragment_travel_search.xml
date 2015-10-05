@@ -3,4 +3,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".TravelSearchFragment">
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/departure_input_view"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="@string/travel_search_input_hint_departure"/>
 </RelativeLayout>

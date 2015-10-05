@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoEuro</string>
+
+    <string name="travel_search_input_hint_departure">From</string>
 </resources>

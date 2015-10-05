@@ -53,13 +53,16 @@ dependencies {
     compile "com.android.support:appcompat-v7:$androidSupportVersion"
     compile "com.android.support:design:$androidSupportVersion"
 
+    compile 'com.google.android.gms:play-services-location:8.1.0'
+
+    provided 'javax.annotation:javax.annotation-api:1.2'
+
     compile rootProject.ext.rxJava
     compile rootProject.ext.rxKotlin
     compile rootProject.ext.rxAndroid
-    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxBindingVersion"
 
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion-3"
 
     compile "com.google.dagger:dagger:$daggerVersion"
     kapt    "com.google.dagger:dagger-compiler:$daggerVersion"

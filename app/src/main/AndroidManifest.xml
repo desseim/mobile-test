@@ -2,13 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.desseim.goeuro" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- coarse location is enough for our use-case, and nicer to the user: -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".GoEuroApplication"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".TravelSearchActivity"
+            android:name=".ui.search.TravelSearchActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
