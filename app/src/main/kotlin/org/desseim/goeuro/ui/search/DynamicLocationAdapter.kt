@@ -40,10 +40,11 @@ public class DynamicLocationAdapter : ArrayAdapter<LocationInputElement> {
                 results.values =
                         if (constraint != null) {
                             try {
-                                // this is called in a background thread already, so we call the API synchronously
+                                val userLastLocation = lazy { googleLocationApiClient?.lastLocation() }  // only retrieve it once, but as late as possible to increase chances of getting an accurate location
                                 placeService
+                                        // we have been called in a background thread already, so we call the API synchronously
                                         .getPlaces(constraint.toString(), contextLocaleLanguage())
-                                        .sortedBy(distanceFrom(googleLocationApiClient?.lastLocation()))
+                                        .sortedBy { userLastLocation.value?.distanceTo(it.location) ?: { Log.d(LOG_TAG, "! No user last location !") ; 0f }() }
                                         .map { LocationInputElement(it) }
                             } catch(e: Exception) {
                                 listOf<Place>()
@@ -55,14 +56,6 @@ public class DynamicLocationAdapter : ArrayAdapter<LocationInputElement> {
             }
 
             private fun contextLocaleLanguage() = context?.resources?.configuration?.locale?.language ?: DEFAULT_LOCALE
-
-            private fun distanceFrom(location: Location?, defaultValue: Float = 0f): (Place) -> Float {
-                if (location == null) {
-                    // temporary crude way of noticing when the connection to the location API client went well but no location is yet available
-                    Log.d(LOG_TAG, "! location to check distance from is absent !")
-                }
-                return { place -> location?.distanceTo(place.location) ?: defaultValue }
-            }
         }
     }
     override fun getFilter(): Filter? = _filter
