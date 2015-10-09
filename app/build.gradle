@@ -60,6 +60,7 @@ dependencies {
     compile rootProject.ext.rxJava
     compile rootProject.ext.rxKotlin
     compile rootProject.ext.rxAndroid
+    compile "com.jakewharton.rxbinding:rxbinding:$rxBindingVersion"
 
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion-3"

@@ -83,6 +83,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.1.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.jakewharton.rxbinding/rxbinding/0.2.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jacoco" />
@@ -111,8 +112,8 @@
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
-    <orderEntry type="library" exported="" name="jackson-core-2.6.2" level="project" />
     <orderEntry type="library" exported="" name="converter-jackson-1.9.0" level="project" />
+    <orderEntry type="library" exported="" name="jackson-core-2.6.2" level="project" />
     <orderEntry type="library" exported="" name="kotlin-stdlib-0.14.449" level="project" />
     <orderEntry type="library" exported="" name="rxkotlin-0.22.14" level="project" />
     <orderEntry type="library" exported="" name="kotlin-reflect-0.14.449" level="project" />
@@ -125,6 +126,7 @@
     <orderEntry type="library" exported="" name="play-services-basement-8.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-maps-8.1.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.0.14" level="project" />
+    <orderEntry type="library" exported="" name="rxbinding-0.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-v13-23.0.1" level="project" />
   </component>
 </module>
