@@ -65,7 +65,7 @@ public class TravelSearchFragment : InjectableFragment() {
         departureAutoCompleteTextView!!.setupAutoCompleteTextViews()
         arrivalAutoCompleteTextView!!.setupAutoCompleteTextViews()
 
-        travelDateCalendarView!!.minDate = Calendar.getInstance().timeInMillis
+        travelDateCalendarView!!.minDate = Calendar.getInstance().timeInMillis - 1000L  //XXX set to 1s. before now to circumvent `CalendarView` check that the min date is strictly < current time
     }
 
     override fun onResume() {
