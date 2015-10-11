@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="material_light_blue_100">#B3E5FC</color>
+    <color name="material_light_blue_500">#03A9F4</color>
+    <color name="material_light_blue_700">#0288D1</color>
+    <color name="material_amber_A100">#FFE57F</color>
+    <color name="material_amber_A200">#FFD740</color>
+    <color name="material_amber_A400">#FFC400</color>
+    <color name="material_amber_A700">#FFAB00</color>
+
+    <color name="black_100">#FF000000</color>
+    <color name="black_12">#1E000000</color>
+    <color name="black_26">#42000000</color>
+    <color name="black_54">#89000000</color>
+    <color name="black_87">#DE000000</color>
+    <color name="white_100">#FFFFFFFF</color>
+    <color name="white_12">#1EFFFFFF</color>
+    <color name="white_30">#4CFFFFFF</color>
+    <color name="white_70">#B2FFFFFF</color>
+
+    <color name="dark_background_text_principal">@color/white_100</color>
+    <color name="dark_background_text_secondary">@color/white_70</color>
+    <color name="dark_background_text_disabled">@color/white_30</color>
+    <color name="dark_background_divider">@color/white_12</color>
+
+    <color name="clear_background_background">@color/white_100</color>
+    <color name="clear_background_background_disabled">@color/white_70</color>
+    <color name="clear_background_text_principal">@color/black_87</color>
+    <color name="clear_background_text_secondary">@color/black_54</color>
+    <color name="clear_background_text_disabled">@color/black_26</color>
+    <color name="clear_background_divider">@color/black_12</color>
+</resources>

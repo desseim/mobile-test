@@ -3,4 +3,5 @@
 
     <string name="travel_search_input_hint_departure">From</string>
     <string name="travel_search_input_hint_arrival">To</string>
+    <string name="travel_search_input_date_label">Departing: %1$s</string>
 </resources>

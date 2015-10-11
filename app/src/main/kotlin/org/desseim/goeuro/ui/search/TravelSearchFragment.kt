@@ -70,7 +70,7 @@ public class TravelSearchFragment : InjectableFragment() {
         val dateInputChanges = travelDateCalendarView!!
                 .dateSelectionEvents()
                 .observeOnMainThread()
-                .doOnNext { travelDateLabelView?.text = it.selectedDate.formatForDisplay() }
+                .doOnNext { travelDateLabelView?.text = getDateLabelText(it.selectedDate) }
         val departureInputChanges = RxTextView.textChangeEvents(departureAutoCompleteTextView!!)
         val arrivalInputChanges = RxTextView.textChangeEvents(arrivalAutoCompleteTextView!!)
 
@@ -100,6 +100,9 @@ public class TravelSearchFragment : InjectableFragment() {
                 .apply { googleLocationApiClient = this@TravelSearchFragment.googleLocationApiClient }
         setAdapter(dynamicLocationAdapter)
     }
+
+    private fun getDateLabelText(date: Calendar) =
+            resources.getString(R.string.travel_search_input_date_label, date.formatForDisplay())
 
     private fun Calendar.formatForDisplay() =
             DateFormat.getDateInstance().format(this.time)

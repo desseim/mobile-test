@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GoEuroTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/material_light_blue_500</item>
+        <item name="colorPrimaryDark">@color/material_light_blue_700</item>
+        <item name="colorAccent">@color/material_amber_A200</item>
+        <item name="colorControlActivated">@color/material_amber_A400</item>
+
+        <item name="android:textColorPrimary">@color/clear_background_text_principal</item>
+        <item name="android:textColorSecondary">@color/clear_background_text_secondary</item>
+
+        <item name="titleTextColor">@color/dark_background_text_principal</item>
+    </style>
+</resources>
