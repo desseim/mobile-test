@@ -3,15 +3,18 @@ package org.desseim.goeuro.ui.search
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.AutoCompleteTextView
 import android.widget.CalendarView
 import android.widget.TextView
 import com.google.android.gms.common.api.GoogleApiClient
 import com.jakewharton.rxbinding.view.RxView
 import com.jakewharton.rxbinding.widget.RxTextView
+import com.jakewharton.rxbinding.widget.TextViewEditorActionEvent
 import org.desseim.goeuro.R
 import org.desseim.goeuro.inject.InjectableFragment
 import org.desseim.goeuro.rest.PlaceService
@@ -19,6 +22,7 @@ import org.desseim.goeuro.rx.dateSelectionEvents
 import org.desseim.goeuro.rx.observeOnMainThread
 import rx.Observable
 import rx.lang.kotlin.emptyObservable
+import rx.lang.kotlin.merge
 import rx.subscriptions.CompositeSubscription
 import java.text.DateFormat
 import java.util.*
@@ -80,11 +84,16 @@ public class TravelSearchFragment : InjectableFragment() {
                 dateInputChanges.map { it.selectedDate },
                 ::AggregateUserInput)
 
+        val searchUserActions = arrayListOf(
+                RxView.clicks(searchActionView!!),
+                RxTextView.editorActionEvents(departureAutoCompleteTextView!!).filter(TextViewEditorActionEvent::isSearchAction),
+                RxTextView.editorActionEvents(arrivalAutoCompleteTextView!!).filter(TextViewEditorActionEvent::isSearchAction))
+                .merge()
+
         inputChanges
                 .observeOnMainThread()
                 .doOnNext { searchActionView?.visibility = if (it.isValid()) View.VISIBLE else View.GONE }
-                .filter { it.isValid() }
-                .switchMap { validInput -> searchActionView?.let { RxView.clicks(it).map { validInput } } ?: emptyObservable<AggregateUserInput>() }
+                .switchMap { input -> if (input.isValid()) searchUserActions.map { input } else emptyObservable() }
                 .subscribe { searchAction -> Snackbar.make(view, "TODO :( Search for a trip from: ${searchAction.departure} to: ${searchAction.arrival} on the: ${searchAction.date.formatForDisplay()}", Snackbar.LENGTH_LONG).show() }
                 .let { subscriptions.add(it) }
     }
@@ -115,3 +124,7 @@ public class TravelSearchFragment : InjectableFragment() {
             departure.toString().isNotBlank() &&
                     arrival.toString().isNotBlank()
 }
+
+private fun TextViewEditorActionEvent.isSearchAction() =
+        actionId() == EditorInfo.IME_ACTION_SEARCH ||
+                (actionId() == EditorInfo.IME_NULL && keyEvent()?.action == KeyEvent.ACTION_DOWN)

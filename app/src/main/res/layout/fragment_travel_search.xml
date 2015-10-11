@@ -17,7 +17,9 @@
             android:id="@+id/departure_input_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:nextFocusDown="@+id/arrival_input_view"
             android:singleLine="true"
+            android:imeOptions="actionNext"
             android:hint="@string/travel_search_input_hint_departure"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -28,10 +30,11 @@
         android:layout_toLeftOf="@+id/search_action_button"
         android:layout_below="@id/departure_input_layout">
         <android.support.v7.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/arrival_input_view"
+            android:id="@id/arrival_input_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:hint="@string/travel_search_input_hint_arrival"/>
     </android.support.design.widget.TextInputLayout>
 
