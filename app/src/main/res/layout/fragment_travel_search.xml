@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="20dp"
+    android:clipToPadding="false"
     android:animateLayoutChanges="true"
     tools:context=".TravelSearchFragment">
 
