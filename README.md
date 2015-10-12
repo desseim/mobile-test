@@ -1,29 +1,29 @@
-Mobile Developer - Test
-=======================
-The purpose of this test is to see how you approach a problem and what your solutions look like. The requirements for this test are simple and should be straightforward to grasp. When implementing a solution, please keep things simple as well. That said:
-### Implement an autocompleting travel search form
-On the form, the user is required to enter the start and end location and the date of their trip. The start and end location need to be automatically completed using a list of known locations that can be requested through a JSON API invocation. When displaying matches, they should be ordered by distance to the user's current location. Date entry should be facilitated by a date entry widget. A "search" button should be available when the form has been completely filled out. Tapping the "search" button should display a "Search is not yet implemented" message to the user.
+# GoEuro Mobile Developer - Test Entry
 
+This is my entry to the "Mobile Developer Test" from GoEuro. See [the original repository](https://github.com/goeuro/mobile-test) for details on the subject.
 
-![wireframe](wireframe.png?raw=true)
+## Specifications
 
+The application is only one screen, which lets the user select a departure location, an arrival location and a date of travel.
+When (and only when) all fields contain valid input (i.e. some text for the locations and a date later than or equal to the current date), a search button is visible. By clicking the search button or triggering search through the IME, the user can initiate a search with the current input values as parameter. For now, this only shows a message (containing the search parameters) to the user.
 
+During location input, if a network connection is available, autocompletion options are shown in a dropview and updated as the user types. If the Google location service is enabled and a user location is available, autocompletion options are ordered by increasing distance from the last known user location.
 
-The app should use the position API endpoint that can be found here: `http://api.goeuro.com/api/v2/position/suggest/{locale}/{term}`
+## Implementation
 
-##### For example:
- http://api.goeuro.com/api/v2/position/suggest/de/hamburg
+Code is written in [Kotlin](https://kotlinlang.org/) (M14), and events are processed through reactive streams ([RxJava](https://github.com/ReactiveX/RxJava) / [RxKotlin](https://github.com/ReactiveX/RxKotlin) and [RxBinding](https://github.com/JakeWharton/RxBinding) for UI event streams). [Dagger2](https://google.github.io/dagger/) is used for injecting a few dependencies. Communication with the REST API is handled with [retrofit](https://square.github.io/retrofit/) and responses are parsed with [Jackson](https://github.com/FasterXML/jackson) (and [its Kotlin module](https://github.com/FasterXML/jackson-module-kotlin)).
 
-Where `{term}` is the string that the user has entered so far.
+The implementation specific to acquiring user location is kept in a dedicated activity for better separation of concerns and allow future reusability.
 
-The endpoint always responds with a JSON object that has a results key. The value for that key is either null or an array of objects. Each object, among other keys, has a *name* and a *geo_positition* key. The *geo_position* key is an object with latitude and longitude fields.
-### Your solution
-Please implement your solution as an App that we can try out. For Android we need 4.4 compatibility or for iOS 8 compatibility. Also send us the source code to your solution. We use GitHub, so if you put your source code into a GitHub repository, it will make our life easy.  
-Please provide information for any third party library and tool you are using.
-Please use Objective-C as the main language for iOS test
+## Limitations
 
-Bonus points for iOS :
-- Show us how you can adapt it to different screen sizes 
-- Can you use Objective-C and SWIFT together? show us a sample
+- although network and location unavailability are handled, the user isn't currently notified of such through the UI
+- a few bugs in the `CalendarView` are currently not addressed:
+ - on some platforms (verified on 4.4.4) the calendar starts with an initial scroll at the year 2100 (although the current date is properly selected) ; this seemingly only occurs when the calendar view minimum date is set to a date too close to the current one (which is the case in the current implementation)
+ - on some platforms (verified on 5.1), the calendar view `date` property doesn't hold the selected date, which means that when the view is destroyed / recreated it gets recreated at the current date instead of the last selected ones
+- location is currently only acquired through the Google Play location service
+- no test :(
 
-**A clean, well-animated, beautiful UI is very important. Please, let your imagination fly here (hint, use more than standard animations).**
+## Screenshot
+
+![screenshot](screenshot_example_search.png)
